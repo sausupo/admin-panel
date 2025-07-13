@@ -1,3 +1,9 @@
+import { Outlet } from "react-router";
+
 export function App() {
-  return <div>App</div>;
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
 }
