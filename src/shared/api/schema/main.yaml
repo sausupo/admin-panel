@@ -1,0 +1,16 @@
+openapi: 3.0.0
+info:
+  title: Admin Panel API
+  version: 1.0.0
+  description: API
+paths:
+  /people:
+    get:
+      $ref: "./endpoints/people.yaml#/getAllPeople"
+
+    post:
+      $ref: "./endpoints/people.yaml#/createPerson"
+
+  /people/{personId}:
+    delete:
+      $ref: "./endpoints/people.yaml#/deletePerson"

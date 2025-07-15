@@ -1,0 +1,78 @@
+schemas:
+  Person:
+    type: object
+    required:
+    - name
+    - email
+    properties:
+    id:
+      type: integer
+      example: 1
+    name:
+      type: string
+      example: "John Doe"
+    email:
+      type: string
+      example: "john@example.com"
+
+# GET /people - Get all people
+getAllPeople:
+  tags:
+  - People
+  summary: Get list of people
+  responses:
+    "200":
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+            $ref: "#/schemas/Person"
+    '404':
+      $ref: '../shared/responses.yaml#/NotFound'
+    '500':
+      $ref: '../shared/responses.yaml#/ServerError'
+
+# POST /people - Create person
+createPerson:
+  tags:
+  - People
+  summary: Create new person
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/Person"
+  responses:
+    "201":
+      description: Successfully created
+      content:
+        application/json:
+          schema:
+            $ref: "#/schemas/Person"
+    '404':
+      $ref: '../shared/responses.yaml#/NotFound'
+    '500':
+      $ref: '../shared/responses.yaml#/ServerError'
+
+# DELETE /people/{personId} - Delete person
+deletePerson:
+  tags:
+  - People
+  summary: Delete a person
+  parameters:
+  - name: personId
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+  responses:
+    '204':
+      description: Person deleted successfully
+    '404':
+      $ref: '../shared/responses.yaml#/NotFound'
+    '500':
+      $ref: '../shared/responses.yaml#/ServerError'

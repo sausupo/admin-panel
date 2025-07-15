@@ -1,0 +1,85 @@
+# 400 Bad Request
+BadRequest:
+  description: Invalid request parameters or body
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "Validation failed"
+          details:
+            type: array
+            items:
+              type: string
+            example: [ "name is required", "email must be valid" ]
+
+# 401 Unauthorized
+Unauthorized:
+  description: Missing or invalid authentication
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "Authentication required"
+
+# 403 Forbidden
+Forbidden:
+  description: Insufficient permissions
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "Access denied"
+
+# 404 Not Found
+NotFound:
+  description: Resource not found
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "Resource not found"
+          resource:
+            type: string
+            example: "Person"
+
+# 409 Conflict
+Conflict:
+  description: Resource conflict
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "Resource already exists"
+          field:
+            type: string
+            example: "email"
+
+# 500 Server Error
+ServerError:
+  description: Internal server error
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "Internal server error"
+          requestId:
+            type: string
+            example: "req_123456"
