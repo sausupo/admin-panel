@@ -1,10 +1,15 @@
 import { createBrowserRouter, redirect } from "react-router";
 import { App } from "./app";
 import { ROUTES } from "@/shared/model/routes";
+import { Providers } from "./providers";
 
 export const router = createBrowserRouter([
   {
-    element: <App />,
+    element: (
+      <Providers>
+        <App />
+      </Providers>
+    ),
     children: [
       {
         path: ROUTES.PEOPLE,
