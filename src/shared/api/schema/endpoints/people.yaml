@@ -2,11 +2,12 @@ schemas:
   Person:
     type: object
     required:
+    - id
     - name
     - email
     properties:
       id:
-        type: integer
+        type: string
         example: 1
       name:
         type: string
@@ -67,8 +68,7 @@ deletePerson:
     in: path
     required: true
     schema:
-      type: integer
-      example: 1
+      type: string
   responses:
     '204':
       description: Person deleted successfully
