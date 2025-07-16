@@ -1,0 +1,149 @@
+register:
+  tags:
+  - Authentication
+  summary: Register new user
+  description: Creates new user account and returns JWT tokens
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/RegisterRequest"
+  responses:
+    '201':
+      description: User registered successfully
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/AuthResponse"
+    '400':
+      $ref: "../shared/responses.yaml#/BadRequest"
+    '409':
+      description: Email already exists
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+
+login:
+  tags:
+  - Authentication
+  summary: Authenticate user
+  description: Returns JWT tokens for authentication
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/LoginRequest"
+  responses:
+    '200':
+      description: Authentication successful
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/AuthResponse"
+    '401':
+      $ref: "../shared/responses.yaml#/Unauthorized"
+    '403':
+      $ref: "../shared/responses.yaml#/Forbidden"
+
+refresh:
+  tags:
+  - Authentication
+  summary: Refresh access token
+  description: Returns new access token using refresh token
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/RefreshRequest"
+  responses:
+    '200':
+      description: Token refreshed successfully
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/AuthResponse"
+    '401':
+      $ref: "../shared/responses.yaml#/Unauthorized"
+
+components:
+  schemas:
+    RegisterRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+        password:
+          type: string
+          format: password
+          minLength: 8
+          example: "P@ssw0rd123"
+        name:
+          type: string
+          example: "John Doe"
+      required:
+      - email
+      - password
+      - name
+
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+        password:
+          type: string
+          format: password
+          example: "P@ssw0rd123"
+      required:
+      - email
+      - password
+
+    RefreshRequest:
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+      required:
+      - refreshToken
+
+    AuthResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        refreshToken:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        expiresIn:
+          type: integer
+          example: 3600
+      required:
+      - accessToken
+      - refreshToken
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Email already exists"
+        code:
+          type: string
+          example: "EMAIL_EXISTS"
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: "JWT Authorization header using the Bearer scheme"

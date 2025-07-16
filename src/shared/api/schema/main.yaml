@@ -4,6 +4,18 @@ info:
   version: 1.0.0
   description: API
 paths:
+  /auth/register:
+    post:
+      $ref: "./endpoints/auth.yaml#/register"
+
+  /auth/login:
+    post:
+      $ref: "./endpoints/auth.yaml#/login"
+
+  /auth/refresh:
+    post:
+      $ref: "./endpoints/auth.yaml#/refresh"
+
   /people:
     get:
       $ref: "./endpoints/people.yaml#/getAllPeople"
