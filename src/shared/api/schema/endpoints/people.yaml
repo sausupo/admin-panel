@@ -5,15 +5,15 @@ schemas:
     - name
     - email
     properties:
-    id:
-      type: integer
-      example: 1
-    name:
-      type: string
-      example: "John Doe"
-    email:
-      type: string
-      example: "john@example.com"
+      id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: "John Doe"
+      email:
+        type: string
+        example: "john@example.com"
 
 # GET /people - Get all people
 getAllPeople:
@@ -28,7 +28,7 @@ getAllPeople:
           schema:
             type: array
             items:
-            $ref: "#/schemas/Person"
+              $ref: "#/schemas/Person"
     '404':
       $ref: '../shared/responses.yaml#/NotFound'
     '500':
