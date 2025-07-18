@@ -21,6 +21,8 @@ getAllPeople:
   tags:
   - People
   summary: Get list of people
+  security:
+  - bearerAuth: []
   responses:
     "200":
       description: Success
@@ -40,6 +42,8 @@ createPerson:
   tags:
   - People
   summary: Create new person
+  security:
+  - bearerAuth: []
   requestBody:
     required: true
     content:
@@ -63,6 +67,8 @@ deletePerson:
   tags:
   - People
   summary: Delete a person
+  security:
+  - bearerAuth: []
   parameters:
   - name: personId
     in: path
