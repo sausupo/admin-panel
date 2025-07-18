@@ -26,3 +26,4 @@ dist-ssr
 # Api generated
 src/shared/api/schema/generated.ts
 public/mockServiceWorker.js
+bundle.yaml
