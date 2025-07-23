@@ -28,15 +28,15 @@ export function AppHeader() {
         orientation="vertical"
         className="mr-2 data-[orientation=vertical]:h-4"
       />
-      <ThemeSwitcher/>
-      <Button
-        variant="secondary"
+      <ThemeSwitcher className="ml-auto"/>
+      {/* <Button
         size="icon"
+        variant="ghost"
         className=" ml-auto relative inline-flex"
       >
         <Bell />
-        <Badge className="absolute -top-1 -right-1 h-3 min-w-3 rounded-full px-1 font-mono tabular-nums" />
-      </Button>
+        <Badge className="bg-emerald-600 absolute top-[10px] right-[10px] h-1 min-w-1 rounded-full px-0.5 ring-1 ring-background" />
+      </Button> */}
       {/* <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem className="hidden md:block">
