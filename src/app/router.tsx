@@ -2,9 +2,10 @@ import { createBrowserRouter, redirect } from "react-router";
 import { App } from "./app";
 import { ROUTES } from "@/shared/model/routes";
 import { Providers } from "./providers";
-import { ProtectedRoute } from "./protected-route";
-import { SidebarProvider, SidebarTrigger } from "@/shared/ui/kit/sidebar";
+import { protectedLoader, ProtectedRoute } from "./protected-route";
+import { SidebarInset, SidebarProvider } from "@/shared/ui/kit/sidebar";
 import { AppSidebar } from "@/features/sidebar";
+import { AppHeader } from "@/features/header";
 
 export const router = createBrowserRouter([
   {
@@ -15,16 +16,16 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        // loader: protectedLoader, 
         element: (
-          <>
             <SidebarProvider>
               <AppSidebar />
-              <main>
-                <SidebarTrigger />
+              <SidebarInset>
+                <AppHeader/>
                 <ProtectedRoute />
-              </main>
+              </SidebarInset>
+                {/* <SidebarTrigger /> */}
             </SidebarProvider>
-          </>
         ),
         children: [
           {
