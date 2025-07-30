@@ -24,7 +24,6 @@ export const router = createBrowserRouter([
                 <AppHeader/>
                 <ProtectedRoute />
               </SidebarInset>
-                {/* <SidebarTrigger /> */}
             </SidebarProvider>
         ),
         children: [

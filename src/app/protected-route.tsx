@@ -7,7 +7,7 @@ export function ProtectedRoute() {
   const { session } = useSession();
 
   if (!session) {
-    return <Navigate to={ROUTES.PEOPLE} />;
+    return <Navigate to={ROUTES.LOGIN} />;
   }
 
   return <Outlet />;
@@ -19,7 +19,7 @@ export async function protectedLoader() {
   const token = await useSession.getState().refreshToken();
 
   if (!token) {
-    return redirect(ROUTES.PEOPLE);
+    return redirect(ROUTES.LOGIN);
   }
 
   return null;
